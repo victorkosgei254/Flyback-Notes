@@ -1,0 +1,30 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsubsection.1.0.1}{What is a Flyback Converter}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.1}{Continous Conduction Mode Operation}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.2}{Discontinous Conduction Mode Operatio}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.3}{Forced Continous Mode Operation}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Component Selection}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{Introduction}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Core Design}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.3}{Snubber Circuit Design}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.4}{EMI Filter Design}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.5}{Rectifier Circuit Design}{section.2}% 11
+\BOOKMARK [1][-]{section.3}{Calculating Losses}{}% 12
+\BOOKMARK [2][-]{subsection.3.1}{Switching Losses}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.2}{Conduction Losses}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.3}{Core Losses}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.4}{Simulating Losses}{section.3}% 16
+\BOOKMARK [1][-]{section.4}{Modelling}{}% 17
+\BOOKMARK [2][-]{subsection.4.1}{Modelling with MATLAB }{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.2}{Modelling with PSIM}{section.4}% 19
+\BOOKMARK [2][-]{subsection.4.3}{Getting the Full Power of Both MATLAB and PSIM - Cosimulation}{section.4}% 20
+\BOOKMARK [2][-]{subsection.4.4}{Other Simulation Tools}{section.4}% 21
+\BOOKMARK [1][-]{section.5}{Comparison}{}% 22
+\BOOKMARK [2][-]{subsubsection.5.0.1}{Direct Offline Flyback Converter Design}{section.5}% 23
+\BOOKMARK [2][-]{subsection.5.1}{Direct Offline Flyback CCM}{section.5}% 24
+\BOOKMARK [2][-]{subsection.5.2}{Direct Offline Flyback DCM}{section.5}% 25
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Step Down Flyback Converter Design}{subsection.5.2}% 26
+\BOOKMARK [2][-]{subsection.5.3}{Step Down Offline Flyback CCM}{section.5}% 27
+\BOOKMARK [2][-]{subsection.5.4}{Step Down Offline Flyback DCM}{section.5}% 28
+\BOOKMARK [1][-]{section.6}{Conclusions}{}% 29
+\BOOKMARK [2][-]{subsection.6.1}{Offline Flyback Supply Voltages}{section.6}% 30

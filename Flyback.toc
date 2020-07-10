@@ -1,0 +1,30 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {subsubsection}{\numberline {1.0.1}What is a Flyback Converter}{2}{subsubsection.1.0.1}%
+\contentsline {subsection}{\numberline {1.1}Continous Conduction Mode Operation}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Discontinous Conduction Mode Operatio}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Forced Continous Mode Operation}{3}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Component Selection}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Introduction}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Core Design}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Snubber Circuit Design}{8}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}EMI Filter Design}{8}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Rectifier Circuit Design}{8}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Calculating Losses}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Switching Losses}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Conduction Losses}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Core Losses}{8}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Simulating Losses}{8}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Modelling}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Modelling with MATLAB }{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Modelling with PSIM}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Getting the Full Power of Both MATLAB and PSIM - Cosimulation}{9}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Other Simulation Tools}{9}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Comparison}{9}{section.5}%
+\contentsline {subsubsection}{\numberline {5.0.1}Direct Offline Flyback Converter Design}{9}{subsubsection.5.0.1}%
+\contentsline {subsection}{\numberline {5.1}Direct Offline Flyback CCM}{9}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Direct Offline Flyback DCM}{9}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Step Down Flyback Converter Design}{9}{subsubsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.3}Step Down Offline Flyback CCM}{9}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Step Down Offline Flyback DCM}{9}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Conclusions}{9}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Offline Flyback Supply Voltages}{9}{subsection.6.1}%

@@ -1,0 +1,270 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\begin{document}
+    \title{Factors to consider when designing a flyback}
+    \author{
+        Kosgei .K. Victor\\victorkosgei254@gmail.com\\Undegraduate - Moi University\\School of Engineering
+    }
+    \maketitle
+
+\tableofcontents
+\section[Introduction]{Introduction}
+\subsubsection[What is a Flyback Converter]{What is a Flyback Converter}
+A Flyback converter is a DC-DC converter that is mostly used in Low to Medium power applications. It is a Buck-Boost derived
+topology and it can be model it to a Buck-Boost equivalent and all the equations of a Buck-Boost can hold.
+\\
+This form of converter has 2 operating modes \begin{enumerate}
+    \item Continuos Conduction Mode (CCM)
+    \item Discontinous Conduction Mode (DCM)
+\end{enumerate}
+The mode of operation is affected by\begin{enumerate}
+    \item Value of primary inductance or magnetizing inductance
+    \item Ouput current.
+\end{enumerate}
+With this in mind, a Flyback design to operate on the two modes can be made by selecting the primary inductance at Boundary Conduction Mode (BCM) $Lm_(BCM)$ where inductance values lower than this will render the converter to go into DCM and values greater than this will make the converter transit to CCM.
+Another design approach is by setting reference current output as the design starting point from which values of converter components are to be selected. Values below this sets the converter to DCM whereas values greater than this sets the converter to CCM.
+
+\subsection[Continous Conduction Mode Operation]{Continous Conduction Mode Operation}
+A Flyback is said to be operating in CCM if its inductor current is decays to a value greater than zero.or the inductor current does not fall to Zero. Most CCM are used in applications that require high voltages and low currents. Generally any application that require ouput power of between $50 \Leftrightarrow 150$ Watts, this is the most suitable design.\\
+Things to note while working on a Flyback to operate in CCM.
+\begin{enumerate}
+    \item There is one Duty Cycle $D_(on)$. Unlike in DCM where one has to set $t_(on), t_(off), t_d$, in CCM once $t_(on)$ is set, $t_(off)$ is predefined.
+    \\Where  \begin{equation*}
+        t_(on) = \frac{D_(on)}{f_(sw)} , t_(off) = \frac{1-D_(on)}{f_(sw)}
+    \end{equation*}
+    \item As the load decreases(output power decreases or output current decreases) beyond a certain value, the converter transits into DCM operation.
+    \item As supply voltage decreases, the dutycyle tends to increase to keep ouput voltage constant (in voltage mode control) the reverse is true when supply voltage increases and therefore it is necessary to determine a limiting dutycyle from where we can determine the maximum primary inductance above or below which we transit from CCM to DCM. This also applies in designing DCM converter.
+\end{enumerate}
+Advantages\\ \begin{enumerate}
+    \item High power ouput as the current does not drop to zero.
+    \item Components suffers from less Peak voltages and current stress.
+    \item Reduced Conduction and switching losses 
+\end{enumerate}
+\subsection[Discontinous Conduction Mode Operatio]{Discontinous Conduction Mode Operation}
+In DCM, primary and secondary inductor current reaches Zero before the next charge cycle begins. DCM Flyback is suitable for Low power application usually $< 50$ Watts.\\A typical DCM waveform is as shown below\\
+Things to note while working on a Flyback in DCM\\
+\begin{enumerate}
+    \item There are 2 Duty Cycles\begin{enumerate}
+        \item $D_(on)$ and $D_(off)$
+        \item There is a time delay $t_d$ between when the secondary current reaches $0$ and the begininning of a new charge cycle
+        \item The total switching period $T$ is the sum of $t_(on) + t_(off) + t_(d)$ where 
+        \begin{equation*}
+            t_(on) = \frac{D_(on)}{f_(sw)} , t_(off) = \frac{D_(off)}{f_(sw)},t_d = T - t_(on) - t_(off)
+        \end{equation*}
+    \end{enumerate}
+    \item As Power demand increases there is a likelihood for the converter to switch from DCM to CCM , thus one has to set maximum limit of Duty Cycle to prevent this transition.
+\end{enumerate}
+
+\subsection[Forced Continous Mode Operation]{Forced Continous Mode Operation}
+%Section Two%
+
+\section{Component Selection}
+\subsection[Introduction]{Introduction}
+    A flyback can get its supply from either DC source or an AC Source. Getting power from AC sources
+    means one has to perform necessary steps to keep the input voltages within specified voltages.
+    Having very high input values i.e drawing power from mains without performing steps such as stepping 
+    down is possible but have its own limitation. I am going to discuss some of the limitations one can face
+    \begin{enumerate}
+        \item Very low values of Duty cycle to keep the output voltage within the design range
+            Say for example one needs to supply a load with 24V 5A from a $240V_(ac)$. Here it is clear that 
+            one has to maintain very low dutycyle ratio within the range $0.1 \Leftrightarrow 0.3$ giving less
+            output voltage variations.
+        \item One will find out that there is numerous losses in supplying the Controller IC as there is a need to step down the
+        voltages from around $339 V_(dc)$ : this is for a $240V_(ac) Supply$ , to around $ 5 \Leftrightarrow 15 V_(dc)$. This losses are due to resistor diveder network as resistors dissipate energy inform of
+        heat. This heat in turn will in turn reduce the saturation level of the core, increased conductor resistance and evaporation of capacitor electrolyte.
+
+        \item Strain in electronic components such as capacitor and  switch
+    \end{enumerate}
+
+    Before the starting the converter it is necessary to determine the load requirement as this will guide you on what converter configuration you will use,
+    the size of components to be used and other factors such as PCB traces thicknesses. In this paper, my focus is on a Flyback converter and therefore the maximum power
+    power for optimal result I can design is 150 Watts. It is worthwhile to further note that for power requirements less than 50 Watts, a Flyback operating in DCM is the optimal option. Values greater than 50 but less than 150 Watts, a CCM 
+    design is the optimal option.\\
+    As mentioned earlier we can start our design by choosing the reference current or reference inductance all these operate in BCM such that values greater than the reference will make it transit to CCM and less to DCM.\\
+    \begin{equation*}
+        DCM \Longleftarrow I_(ref) \Longrightarrow CCM
+    \end{equation*}
+    \\    \begin{equation*}
+        DCM \Longleftarrow Lm_(ref) \Longrightarrow CCM
+    \end{equation*}
+    \\
+    In this paper I am going to design a Flyback converter for 12V 45Ah Lead Acid battery. The Charge requirements are 4.5A and 14.4V.  This is our Flyback converter outputs.\\
+    The power output $P_(out) = V * I \Longrightarrow 14.4 * 4.5 \approx 65 $ Watts.
+    \\
+    For a universal supply its the supply ranges from $110 \Leftrightarrow 240$ VAC giving some derating of $10$VAC for regulation we have a range of $100 \Leftrightarrow 250$ VAC as our supply.
+    \\
+    Having 65 Watts as our demand, it is clear that for optimal performance I need to use a CCM Flyback. In the next section I am going to start the core design process. 
+\subsection[Core Design]{Core Design}
+The core should be able to supply the demand without going into saturation. Our core therefore, needs to reset after every cycle i.e volt-seconds must balance. In order to select or design a core , one has to know the following parameters:
+\\
+\begin{enumerate}
+    \item Input Power $\eta_(in)$
+    \item Input peak current $Ip_(peak)$
+    \item Input Voltage range $Vin_(min) \Leftrightarrow Vin_(max)$
+    \item MOSFET rating $V_(mos)$
+    \item Primary inductance $L_p$which is the same as magnetizing inductance $L_m$
+    \item Secondary inductance $L_s$
+    \item Secondary peak current $Is_(peak)$
+    \item Ouput current $I_o$
+    \item Ouput Voltage $V_o$
+    \item Turns ratio $n$
+    \item Primary turns $N_p$
+    \item Secondary turns $N_s$
+    
+\end{enumerate}
+Deriving equation for the peak primary current.
+\\
+Energy stored in an inductor can be calculated using \begin{equation} \label{inductorenergy}
+    E = \frac{1}{2}* LI^2
+\end{equation}
+Power can be calculated using \begin{equation} \label{powerequation}
+    P = \frac{E}{t} \Longrightarrow \frac{1}{2T} * LI^2 \Longrightarrow P=\frac{1}{2} * LI^2 f_(sw)
+\end{equation}
+Voltage on primary can be calculated using \begin{equation} \label{pri_voltsec}
+    V = \frac{L\Delta I}{\Delta t} \Longrightarrow Vin\frac{L_p*I_p * f_(sw)}{D_(on)}
+\end{equation}
+Now $\Delta t = t_(on) = \frac{D_(on)}{f_(sw)} = T*D_(on)$ substituting in \ref{pri_voltsec} we get \begin{equation}
+    V = \frac{LI_p}{T*D_(on)} \Longrightarrow V*D_(on) =\frac{LI_p}{T} \Longrightarrow V*D_(on) = LI_p f_(sw)
+\end{equation}
+Substitung into \ref{powerequation} we get \begin{equation} \label{niceequation}
+    P = \frac{1}{2} * LI_pf(sw) * I_p \Longrightarrow V*D_(on)*I_p
+\end{equation}
+Putting $I_p$ as a reference we get \begin{equation} \label{primarypeakcurrentequation}
+    I_p = \frac{2P_(in)}{Vin_(min)*D_(on)}
+\end{equation}
+Here $D_(on) $ is dutycyle at boundary between CCM and DCM.
+\\
+Calculating Primary Inductance.
+\\
+Now since the value of $I_p$ can be readily obtained, we can now use \ref{pri_voltsec} to obtain the primary inductance by \begin{equation}\label{primaryinductance}
+    L_p = \frac{Vin_(min) * D_(on)}{I_p * f_(sw)}
+\end{equation}
+This is the reference value of selected inductance, values greater than this will be in CCM and less than this in DCM.
+\\
+Calculating the secondary Inductance.
+\\
+Secondary inductance $I_s$ can be calculated using \ref{primarypeakcurrentequation} by replacing $P_(in)$ with $P_(out)$ and $D_(on)$ with $1-D_(on)$.This will look like this \begin{equation} \label{peaksecondarycurrent}
+    I_s = \frac{2P_(out)}{V_(out) * (1-D_(on))}
+\end{equation}
+Secondary inductance can also be calculated as \ref{primaryinductance} but replacing values of $D_(on)$ and $V_in$ to look like this \begin{equation} \label{secondaryinductance}
+    L_s = \frac{V_(out) * (1-D_(on))}{I_(out) * f_(sw)}
+\end{equation}
+\\
+Once the Primary and Secondary inductances and peak current have been determined, the next parameter is the turns ratio $n$.
+We know that \begin{equation} \label{lslpeq}
+    L_p = \frac{L_s}{n^2}
+\end{equation}
+substituting $L_s$ with \ref{secondaryinductance} and $L_p$ with \ref{primaryinductance} we get \begin{equation}
+    n^2 = \frac{L_s}{L_p} = \frac{V_(out) (1-D_(on) * I_p)}{I_(out) * Vin_(min) * D_(on)} = \left(\frac{N_s}{N_p}\right)^2
+\end{equation}
+\\
+Having the turns ration $n$ we can now calculate the primary and secondary turns. This is not that staightfoward since depending on the core selected, the number of primary
+turns vary but always the turns ratio remains the same. Therefore it is vital to know the properties of the core that one select for any given application. This properties are 
+readily available in the datasheet whether you are designing your own transformer or selecting an off-shelf transformer. Some important parameters to check are : \begin{enumerate}
+    \item Maximum flux density
+    \item Inductance index
+    \item Whether the core is gapped or ungapped
+    \item Effective area
+    \item Effective length
+    \item Effective Volume
+    \item Relative permeability
+    \item Area Product
+    \item Window area for Copper $W_(cu)$
+    \item Window Bobbin area
+\end{enumerate}
+
+
+To get the required wire diameter \begin{equation*}
+    cmils * Area_(wire) = I_(avg)
+\end{equation*} where $cmils$ is the acceptable current density, usually the optimum is around $4A$ per $mm^2$ or it can be represented as $400cmils$.We know area of circle $\Pi * \left(\frac{d}{2}\right)^2$.Making $d$ the subject we get \begin{equation}\label{wirediameter}
+    d = 2\sqrt{\frac{I_(avg)}{cmils *\Pi}}
+\end{equation}
+There are 2 methods to select a core namely \begin{enumerate}
+    \item Core by power handling capacity
+    \item Core by Area Product
+\end{enumerate}
+In each of the above method, one is presented with a chart that matches or ranges within the calculated Area product or power.
+\\
+Core selection by area product \begin{equation}
+    AP_(cm^4) = \frac{P_(out)*Cmils}{K_t * B_(max) * f_(sw)}
+\end{equation}where $AP_(cm^4) = Wa * A_e$,$K_t$ is the topology constant\\
+\begin{tabular}{|c|c|} \hline
+    Topology & Value$K_t$  \\ \hline
+    Full Bridge & 0.0014  \\ \hline
+    Half Bridge & 0.0014 \\ \hline
+    Push Pull & 0.001  \\ \hline
+    Flyback One winding & 0.00033  \\ \hline
+    Fylback multiple winding & 0.00025 \\ \hline
+    Forward & 0.0005 \\
+    \hline
+\end{tabular}\\
+Once that is calculated you can refer to a \href{https://www.mag-inc.com/Design/Design-Guides/Transformer-Design-with-Magnetics-Ferrite-Cores}{chart} to help you selet a core within the $AP_(cm^4)$ range.
+Now, the total area of copper windings should be less the window area for copper winding i.e $Area_(windings)<Wac_(cu)$, if not so select another core.
+The inductance index can also be calculated using \begin{equation} \label{inductanceindex}
+    A_L = \frac{L_p}{N_p^2}
+\end{equation}
+this calculated value should be less or equal to the selected core $A_l$ value.
+\\
+To calculate the number of primary turns we use the following equation:\begin{equation} \label{primaryturns}
+    N_p \geq \frac{L_p*I_p}{B_(max) * A_e}
+\end{equation} Where $B_(max)$ is the maximum permissible Flux density, $A_e$ is the effective area of the selected core.
+\\
+\subsection[Snubber Circuit Design]{Snubber Circuit Design}
+Selecting values for RC,RCD or DZ snubbers
+
+\subsection[EMI Filter Design]{EMI Filter Design}
+
+\subsection[Rectifier Circuit Design]{Rectifier Circuit Design}
+
+%Section Three%
+\section[Calculating Losses]{Calculating Losses}
+Switching losses, Conduction Losses
+\subsection[Switching Losses]{Switching Losses}
+\subsection[Conduction Losses]{Conduction Losses}
+\subsection[Core Losses]{Core Losses}
+\subsection[Simulating Losses]{Simulating Losses}
+
+%Section Four%
+\section[Modelling]{Modelling A Flyback Converter}
+\subsection[Modelling with MATLAB ]{Modelling with MATLAB}
+
+MATLAB is a great tool for Electrical Engineers
+
+\subsection[Modelling with PSIM]{Modelling with PSIM}
+PSIM is the best option to simulate Power electronics circuits
+
+\subsection[Getting the Full Power of Both MATLAB and PSIM - Cosimulation]{PSIM - MATLAB Co-simulation}
+Integrating PSIM with MATLAB
+
+\subsection[Other Simulation Tools]{Other Simulation Tools}
+
+%Section FIVE%
+\section[Comparison]{Direct Offline vs Step Down, DCM vs CCM Comparison}
+In this section I am going to design both Direct Offline Feed and another converter that involve stepping down of Mains voltages, then compare the results and efficiencies.
+\\
+The Following are the Power requirements\\\begin{tabular}{|c|c|c|}
+    \hline
+    Output  & Minumum & Maximum \\ \hline
+    Voltage & $12$     & $24$ \\ \hline
+    Current & $2A$ & $5A$ \\ \hline
+    Switching Frequency & $150kHz$ & -\\   \hline
+    Supply Voltage & $110 V_(ac) $ & $260 V_(ac) $ \\ \hline
+    MOSFET & $600 V$ & - \\ \hline
+    Estimate Efficiency $\eta$ & 97\% & - \\ \hline
+    
+\end{tabular}
+
+\subsubsection[Direct Offline Flyback Converter Design]{Direct Offline Design}
+\subsection[Direct Offline Flyback CCM]{Direct Offline Flyback CCM}
+\subsection[Direct Offline Flyback DCM]{Direct Offline Flyback DCM}
+\subsubsection[Step Down Flyback Converter Design]{Step Down Offline Flyback    Design}
+\subsection[Step Down Offline Flyback  CCM]{Step Down Offline Flyback   CCM}
+\subsection[Step Down Offline Flyback DCM]{Step Down Offline Flyback   DCM}
+
+%END%
+\section[Conclusions]{Conclusions}
+\subsection[Offline Flyback Supply Voltages]{Offline Flyback Supply Voltages}
+In countries having supply voltages of 115 $\Leftrightarrow$ 120 VAC, Direct Offline method is suitable anything above this calls for a step down operation or use of other configurations such as Full Bridges.
+\end{document}
